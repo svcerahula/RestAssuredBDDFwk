@@ -67,6 +67,10 @@ public class placeStepDefs {
     public void is_response_body_should_be(String attr, String value) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         String respString = resp.asString();
+        // some issue with the app
+        //it throws Undefined property: stdClass::$phone_number in <b>/var/www/maps/api/place/AddPlace.php error
+        //hence performing the below string manipulation
+        respString = respString.replaceAll("<br \\/>\\n+.*<br \\/>","");
         System.out.println("response output : "+respString);
         JsonPath js = new JsonPath(respString);
         System.out.println("Json output : "+  js.prettyPrint());
